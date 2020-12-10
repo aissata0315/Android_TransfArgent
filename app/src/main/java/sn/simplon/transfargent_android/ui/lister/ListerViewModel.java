@@ -1,4 +1,4 @@
-package sn.simplon.transfargent_android.ui.home;
+package sn.simplon.transfargent_android.ui.lister;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
