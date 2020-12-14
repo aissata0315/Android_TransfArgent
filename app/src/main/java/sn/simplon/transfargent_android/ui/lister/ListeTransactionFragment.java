@@ -1,4 +1,4 @@
-package sn.simplon.transfargent_android.ui.home;
+package sn.simplon.transfargent_android.ui.lister;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,15 +14,15 @@ import androidx.lifecycle.ViewModelProviders;
 
 import sn.simplon.transfargent_android.R;
 
-public class HomeFragment extends Fragment {
+public class ListeTransactionFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
+    private ListerViewModel homeViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
+                ViewModelProviders.of(this).get(ListerViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_lister, container, false);
         final TextView textView = root.findViewById(R.id.text_home);
         homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override

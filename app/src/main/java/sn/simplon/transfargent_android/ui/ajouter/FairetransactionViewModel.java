@@ -1,14 +1,14 @@
-package sn.simplon.transfargent_android.ui.gallery;
+package sn.simplon.transfargent_android.ui.ajouter;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class GalleryViewModel extends ViewModel {
+public class FairetransactionViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public GalleryViewModel() {
+    public FairetransactionViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is gallery fragment");
     }
