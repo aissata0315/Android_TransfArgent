@@ -27,6 +27,7 @@ public class FaireTransactionFragment extends Fragment {
     private  EditText nomRecepteur;
     private  EditText prenomRecepteur;
     private  EditText telRecepteur;
+    private  EditText montant;
     private Button enregistrer;
 
     private FairetransactionViewModel ajoutTransactionViewModel;
@@ -44,6 +45,7 @@ public class FaireTransactionFragment extends Fragment {
         nomRecepteur = root.findViewById(R.id.nomRecepteur);
         prenomRecepteur = root.findViewById(R.id.prenomRecepteur);
         telRecepteur = root.findViewById(R.id.telRecepteur);
+        montant = root.findViewById(R.id.montant);
 
         root.findViewById(R.id.btnEnvoyer).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +57,10 @@ public class FaireTransactionFragment extends Fragment {
                 String nomRecepteurchaine = nomRecepteur.getText().toString();
                 String prenomRecepteurchaine = prenomRecepteur.getText().toString();
                 String telRecepteurchaine = telRecepteur.getText().toString();
+                String montanttrans = montant.getText().toString();
+
+                AjouterTask ajouterTask = new AjouterTask(getActivity());
+                ajouterTask.execute(nomEmmeteur, prenomEmetteur, telEmetteur, cni, nomRecepteurchaine, prenomRecepteurchaine, telRecepteurchaine,montanttrans);
             }
         });
         return root;
