@@ -58,6 +58,9 @@ public class EmetteurTask extends AsyncTask<String,Void, JSONArray> {
     protected void onPostExecute(JSONArray response) {
         Toast toast = null;
         if(response.length() > 0) {
+            toast = Toast.makeText(context, "Emetteur enregistré!   &", Toast.LENGTH_SHORT);
+
+            //recuperer id emetteur saisi
             EditText idEmrteur = view.findViewById(R.id.idemetteur);
             try {
                 int index = (response.length() -1);
@@ -66,8 +69,18 @@ public class EmetteurTask extends AsyncTask<String,Void, JSONArray> {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            TransactionTask transactionTask = new TransactionTask(this.context);
 
-            toast = Toast.makeText(context, "Emetteur enregistré!   &", Toast.LENGTH_SHORT);
+            EditText montantEditext = (EditText) this.view.findViewById(R.id.montant);
+            String montantTrans = montantEditext.getText().toString();
+
+            EditText idEmetteur = (EditText) this.view.findViewById(R.id.idemetteur);
+            String idEm = idEmetteur.getText().toString();
+
+            EditText idRecepteur = (EditText) this.view.findViewById(R.id.idrecepteur);
+            String idRecp = idRecepteur.getText().toString();
+
+            transactionTask.execute(montantTrans, idEm, idRecp);
         }
 
         else

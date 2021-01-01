@@ -112,20 +112,22 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:id="@+id/montant"
-            android:inputType="text"
+            android:inputType="number"
             android:hint="Montant"
             />
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="text"
+            android:inputType="number"
             android:id="@+id/idemetteur"
+            android:visibility="gone"
             />
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="text"
+            android:inputType="number"
             android:id="@+id/idrecepteur"
+            android:visibility="gone"
             />
       <!--  <DatePicker
             android:layout_width="250dp"

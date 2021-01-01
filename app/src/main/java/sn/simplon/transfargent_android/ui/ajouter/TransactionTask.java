@@ -10,6 +10,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Date;
 
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
@@ -27,10 +28,13 @@ public class TransactionTask extends AsyncTask<String,Void,JSONArray> {
     @Override
     protected JSONArray doInBackground(String[] param) {
 
-      // Log.e("Params",params[0]+ " "+ params[1]);
+       Log.e("Params",param[1]+ ""+ param[2]);
         OkHttpClient client = new OkHttpClient();
         RequestBody requestBody = new FormBody.Builder()
                 .add("montant",param[0])
+                .add("emetteur",  param[1])
+                .add("recepteur",param[2])
+                .add("date", new Date().toString())
                 .build();
         Request request = new Request.Builder()
                 .url(Url)

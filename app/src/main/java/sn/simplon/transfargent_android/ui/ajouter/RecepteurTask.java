@@ -61,6 +61,18 @@ public class RecepteurTask  extends AsyncTask<String,Void, JSONArray> {
         Toast toast = null;
         if (response.length() > 0)
         {
+            toast = Toast.makeText(context, "Recepteur enregistré!", Toast.LENGTH_SHORT);
+            //recuperer id dernier recepteur enregistre
+            EditText idrecepteur = view.findViewById(R.id.idrecepteur);
+            try {
+                int index = (response.length() -1);
+                JSONObject lastElement = response.getJSONObject(index);
+                idrecepteur.setText(lastElement.getString("id"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
           EmetteurTask emetteurTask = new EmetteurTask(this.context, this.view);
 
           EditText nomEmetteurEdittext = (EditText) this.view.findViewById(R.id.nomEmetteur);
@@ -74,16 +86,6 @@ public class RecepteurTask  extends AsyncTask<String,Void, JSONArray> {
 
           EditText cniEmeteurEditText = (EditText) this.view.findViewById(R.id.cni);
           String cni = cniEmeteurEditText.getText().toString();
-          toast = Toast.makeText(context, "Rece enregistré!", Toast.LENGTH_SHORT);
-
-          EditText idrecepteur = view.findViewById(R.id.idrecepteur);
-          try {
-                int index = (response.length() -1);
-                JSONObject lastElement = response.getJSONObject(index);
-                idrecepteur.setText(lastElement.getString("id"));
-          } catch (JSONException e) {
-                e.printStackTrace();
-          }
 
           emetteurTask.execute(nomEmmeteur, prenomEmetteur, telEmetteur, cni);
         }
