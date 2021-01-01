@@ -58,7 +58,7 @@ public class EmetteurTask extends AsyncTask<String,Void, JSONArray> {
     protected void onPostExecute(JSONArray response) {
         Toast toast = null;
         if(response.length() > 0) {
-            toast = Toast.makeText(context, "Emetteur enregistré!   &", Toast.LENGTH_SHORT);
+           // toast = Toast.makeText(context, "Emetteur enregistré!   &", Toast.LENGTH_SHORT);
 
             //recuperer id emetteur saisi
             EditText idEmrteur = view.findViewById(R.id.idemetteur);
@@ -69,7 +69,7 @@ public class EmetteurTask extends AsyncTask<String,Void, JSONArray> {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            TransactionTask transactionTask = new TransactionTask(this.context);
+            TransactionTask transactionTask = new TransactionTask(this.context, this.view);
 
             EditText montantEditext = (EditText) this.view.findViewById(R.id.montant);
             String montantTrans = montantEditext.getText().toString();
@@ -82,11 +82,6 @@ public class EmetteurTask extends AsyncTask<String,Void, JSONArray> {
 
             transactionTask.execute(montantTrans, idEm, idRecp);
         }
-
-        else
-            toast = Toast.makeText(context,"erreur ", Toast.LENGTH_SHORT);
-        toast.show();
-
 
 
     }

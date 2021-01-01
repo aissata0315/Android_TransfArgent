@@ -54,7 +54,6 @@ public class FaireTransactionFragment extends Fragment {
                 String nomRecepteurchaine = nomRecepteur.getText().toString();
                 String prenomRecepteurchaine = prenomRecepteur.getText().toString();
                 String telRecepteurchaine = telRecepteur.getText().toString();
-                String montanttrans = montant.getText().toString();
 
               /*  EmetteurTask emetteurTask = new EmetteurTask(getActivity());
                 emetteurTask.execute(nomEmmeteur, prenomEmetteur, telEmetteur, cni);*/

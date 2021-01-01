@@ -58,10 +58,9 @@ public class RecepteurTask  extends AsyncTask<String,Void, JSONArray> {
     }
 
     protected void onPostExecute(JSONArray response) {
-        Toast toast = null;
         if (response.length() > 0)
         {
-            toast = Toast.makeText(context, "Recepteur enregistré!", Toast.LENGTH_SHORT);
+            //toast = Toast.makeText(context, "Recepteur enregistré!", Toast.LENGTH_SHORT);
             //recuperer id dernier recepteur enregistre
             EditText idrecepteur = view.findViewById(R.id.idrecepteur);
             try {
@@ -89,9 +88,6 @@ public class RecepteurTask  extends AsyncTask<String,Void, JSONArray> {
 
           emetteurTask.execute(nomEmmeteur, prenomEmetteur, telEmetteur, cni);
         }
-        else
-            toast = Toast.makeText(context, " Erreur", Toast.LENGTH_SHORT);
-        toast.show();
 
 
     }
