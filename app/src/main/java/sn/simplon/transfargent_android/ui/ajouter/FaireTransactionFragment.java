@@ -59,14 +59,14 @@ public class FaireTransactionFragment extends Fragment {
                 String telRecepteurchaine = telRecepteur.getText().toString();
                 String montanttrans = montant.getText().toString();
 
-                EmetteurTask emetteurTask = new EmetteurTask(getActivity());
-                emetteurTask.execute(nomEmmeteur, prenomEmetteur, telEmetteur, cni);
+              /*  EmetteurTask emetteurTask = new EmetteurTask(getActivity());
+                emetteurTask.execute(nomEmmeteur, prenomEmetteur, telEmetteur, cni);*/
 
                 RecepteurTask recepteurTask = new RecepteurTask(getActivity());
                 recepteurTask.execute(nomRecepteurchaine, prenomRecepteurchaine,telRecepteurchaine);
 
-                TransactionTask transactionTask = new TransactionTask(getActivity());
-                transactionTask.execute(montanttrans);
+              /*  TransactionTask transactionTask = new TransactionTask(getActivity());
+                transactionTask.execute(montanttrans);*/
             }
         });
         return root;

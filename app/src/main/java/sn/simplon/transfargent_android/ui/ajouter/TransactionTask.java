@@ -1,4 +1,4 @@
-package sn.simplon.transfargent_android.ui.ajouter;
+/*package sn.simplon.transfargent_android.ui.ajouter;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -29,7 +29,7 @@ public class TransactionTask extends AsyncTask<String,Void,JSONObject> {
       // Log.e("Params",params[0]+ " "+ params[1]);
         OkHttpClient client = new OkHttpClient();
         RequestBody requestBody = new FormBody.Builder()
-                .add("montant",param[1])
+                .add("montant",param[0])
                 .build();
         Request request = new Request.Builder()
                 .url(Url)
@@ -68,3 +68,4 @@ public class TransactionTask extends AsyncTask<String,Void,JSONObject> {
 
 }
 
+*/

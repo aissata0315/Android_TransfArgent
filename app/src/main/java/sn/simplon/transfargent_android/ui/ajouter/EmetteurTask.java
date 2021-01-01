@@ -26,10 +26,10 @@ public class EmetteurTask extends AsyncTask<String,Void, JSONObject> {
     protected JSONObject doInBackground(String[] params) {
         OkHttpClient client = new OkHttpClient();
         RequestBody requestBody = new FormBody.Builder()
-                .add("nomEmetteur", params[0])
-                .add("prenomEmetteur",params[1])
-                .add("telEmetteur",params[2])
-                .add("cniEmetteur",params[3])
+                .add("nom", params[0])
+                .add("prenom",params[1])
+                .add("telephone",params[2])
+                .add("cni",params[3])
                 .build();
         Request request = new Request.Builder()
                 .url(Url)
