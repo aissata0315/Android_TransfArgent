@@ -2,6 +2,8 @@ package sn.simplon.transfargent_android.ui.ajouter;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -15,13 +17,16 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import sn.simplon.transfargent_android.R;
 
 public class EmetteurTask extends AsyncTask<String,Void, JSONArray> {
 
     final String Url = "http://192.168.1.2:8080/emetteur/save";
     private Context context;
-    public EmetteurTask(Context context){
+    private View view;
+    public EmetteurTask(Context context, View view){
         this.context = context;
+        this.view = view;
     }
     @Override
     protected JSONArray doInBackground(String[] params) {
@@ -52,8 +57,19 @@ public class EmetteurTask extends AsyncTask<String,Void, JSONArray> {
     }
     protected void onPostExecute(JSONArray response) {
         Toast toast = null;
-        if(response.length() > 0)
+        if(response.length() > 0) {
+            EditText idEmrteur = view.findViewById(R.id.idemetteur);
+            try {
+                int index = (response.length() -1);
+                JSONObject lastElement = response.getJSONObject(index);
+                idEmrteur.setText(lastElement.getString("id"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
             toast = Toast.makeText(context, "Emetteur enregistré!   &", Toast.LENGTH_SHORT);
+        }
+
         else
             toast = Toast.makeText(context,"erreur ", Toast.LENGTH_SHORT);
         toast.show();

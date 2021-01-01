@@ -1,10 +1,11 @@
-/*package sn.simplon.transfargent_android.ui.ajouter;
+package sn.simplon.transfargent_android.ui.ajouter;
 
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -16,15 +17,15 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class TransactionTask extends AsyncTask<String,Void,JSONObject> {
+public class TransactionTask extends AsyncTask<String,Void,JSONArray> {
 
-    final String Url = "http://localhost:8080/envoi/save";
+    final String Url = "http://192.168.1.2:8080/envoi/save";
     private Context context;
     public TransactionTask(Context context){
         this.context = context;
     }
     @Override
-    protected JSONObject doInBackground(String[] param) {
+    protected JSONArray doInBackground(String[] param) {
 
       // Log.e("Params",params[0]+ " "+ params[1]);
         OkHttpClient client = new OkHttpClient();
@@ -37,7 +38,7 @@ public class TransactionTask extends AsyncTask<String,Void,JSONObject> {
                 .build();
         try {
             Response response = client.newCall(request).execute();
-            return new JSONObject(response.body().string());
+            return new JSONArray(response.body().string());
             // Do something with the response.
         } catch (IOException e) {
             e.printStackTrace();
@@ -68,4 +69,3 @@ public class TransactionTask extends AsyncTask<String,Void,JSONObject> {
 
 }
 
-*/
