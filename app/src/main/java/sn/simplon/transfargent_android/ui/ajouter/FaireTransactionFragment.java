@@ -36,7 +36,7 @@ public class FaireTransactionFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         ajoutTransactionViewModel =
                 ViewModelProviders.of(this).get(FairetransactionViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_ajouter, container, false);
+        final View root = inflater.inflate(R.layout.fragment_ajouter, container, false);
 
         nomEmeteur = root.findViewById(R.id.nomEmetteur);
         prenomEmeteur = root.findViewById(R.id.prenomEmetteur);
@@ -50,10 +50,7 @@ public class FaireTransactionFragment extends Fragment {
         root.findViewById(R.id.btnEnvoyer).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String nomEmmeteur = nomEmeteur.getText().toString();
-                String prenomEmetteur = prenomEmeteur.getText().toString();
-                String telEmetteur = telEmeteur.getText().toString();
-                String cni = cniEmeteur.getText().toString();
+
                 String nomRecepteurchaine = nomRecepteur.getText().toString();
                 String prenomRecepteurchaine = prenomRecepteur.getText().toString();
                 String telRecepteurchaine = telRecepteur.getText().toString();
@@ -62,7 +59,7 @@ public class FaireTransactionFragment extends Fragment {
               /*  EmetteurTask emetteurTask = new EmetteurTask(getActivity());
                 emetteurTask.execute(nomEmmeteur, prenomEmetteur, telEmetteur, cni);*/
 
-                RecepteurTask recepteurTask = new RecepteurTask(getActivity());
+                RecepteurTask recepteurTask = new RecepteurTask(getActivity(), root);
                 recepteurTask.execute(nomRecepteurchaine, prenomRecepteurchaine,telRecepteurchaine);
 
               /*  TransactionTask transactionTask = new TransactionTask(getActivity());

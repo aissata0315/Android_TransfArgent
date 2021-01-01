@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -15,15 +16,15 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class EmetteurTask extends AsyncTask<String,Void, JSONObject> {
+public class EmetteurTask extends AsyncTask<String,Void, JSONArray> {
 
-    final String Url = "http://localhost:8080/emetteur/save";
+    final String Url = "http://192.168.1.2:8080/emetteur/save";
     private Context context;
     public EmetteurTask(Context context){
         this.context = context;
     }
     @Override
-    protected JSONObject doInBackground(String[] params) {
+    protected JSONArray doInBackground(String[] params) {
         OkHttpClient client = new OkHttpClient();
         RequestBody requestBody = new FormBody.Builder()
                 .add("nom", params[0])
@@ -37,7 +38,7 @@ public class EmetteurTask extends AsyncTask<String,Void, JSONObject> {
                 .build();
         try {
             Response response = client.newCall(request).execute();
-            return new JSONObject(response.body().string());
+            return new JSONArray(response.body().string());
             // Do something with the response.
         } catch (IOException e) {
             e.printStackTrace();
@@ -49,17 +50,14 @@ public class EmetteurTask extends AsyncTask<String,Void, JSONObject> {
         }
 
     }
-    protected void onPostExecute(JSONObject response) {
+    protected void onPostExecute(JSONArray response) {
         Toast toast = null;
-        try {
-            if(response.getString("success").equals("true"))
-                toast = Toast.makeText(context, "Emetteur enregistré!   &", Toast.LENGTH_SHORT);
-            else
-                toast = Toast.makeText(context, response.getString("message"), Toast.LENGTH_SHORT);
-            toast.show();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        if(response.length() > 0)
+            toast = Toast.makeText(context, "Emetteur enregistré!   &", Toast.LENGTH_SHORT);
+        else
+            toast = Toast.makeText(context,"erreur ", Toast.LENGTH_SHORT);
+        toast.show();
+
 
 
     }

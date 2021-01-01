@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:id="@+id/cni"
-            android:inputType="text"
+            android:inputType="number"
             android:hint="CNI"
             />
         <EditText

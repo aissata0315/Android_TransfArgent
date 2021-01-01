@@ -2,6 +2,8 @@ package sn.simplon.transfargent_android.ui.ajouter;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -15,14 +17,17 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import sn.simplon.transfargent_android.R;
 
 public class RecepteurTask  extends AsyncTask<String,Void, JSONArray> {
 
-    final String Url = "http://192.168.1.5:8080/recepteur/save";
+    final String Url = "http://192.168.1.2:8080/recepteur/save";
     private Context context;
+    private View view;
 
-    public RecepteurTask(Context context) {
+    public RecepteurTask(Context context, View view) {
         this.context = context;
+        this.view = view;
     }
 
 
@@ -57,7 +62,20 @@ public class RecepteurTask  extends AsyncTask<String,Void, JSONArray> {
         if (response.length() > 0)
         {
           EmetteurTask emetteurTask = new EmetteurTask(this.context);
-          emetteurTask.execute();
+
+          EditText nomEmetteurEdittext = (EditText) this.view.findViewById(R.id.nomEmetteur);
+          String nomEmmeteur = nomEmetteurEdittext.getText().toString();
+
+          EditText prenomEmetteurEdittext = (EditText) this.view.findViewById(R.id.prenomEmetteur);
+          String prenomEmetteur = prenomEmetteurEdittext.getText().toString();
+
+          EditText telEmeteurEditText = (EditText) this.view.findViewById(R.id.telEmetteur);
+          String telEmetteur = telEmeteurEditText.getText().toString();
+
+          EditText cniEmeteurEditText = (EditText) this.view.findViewById(R.id.cni);
+          String cni = cniEmeteurEditText.getText().toString();
+          toast = Toast.makeText(context, "Emetteur enregistré!   &", Toast.LENGTH_SHORT);
+          emetteurTask.execute(nomEmmeteur, prenomEmetteur, telEmetteur, cni);
         }
         else
             toast = Toast.makeText(context, " Erreur", Toast.LENGTH_SHORT);
